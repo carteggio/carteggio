@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carteggio — conoscersi per le parole, non per la foto</title>
+<meta name="description" content="Un'app di dating dove ci si conosce per quello che si pensa, prima che per come si appare. In arrivo a Brescia e Bergamo.">
+<meta property="og:title" content="Carteggio">
+<meta property="og:description" content="Conoscersi per le parole, non per la foto. In arrivo a Brescia e Bergamo.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #f6f1e7;
+    --paper-deep: #ede5d3;
+    --ink: #1a1814;
+    --ink-soft: #4a4338;
+    --ink-faded: #8a8275;
+    --accent: #7a2e2a;
+    --accent-soft: #b8645f;
+    --rule: #d9cfb8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+    font-size: 17px;
+  }
+  main {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 64px 28px 96px;
+  }
+
+  /* Header / hero */
+  .meta {
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    margin-bottom: 18px;
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: clamp(56px, 12vw, 88px);
+    text-align: center;
+    letter-spacing: 0.5px;
+    line-height: 1;
+  }
+  h1 .dot { color: var(--accent); }
+  .tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(20px, 4.5vw, 26px);
+    text-align: center;
+    color: var(--ink-soft);
+    margin-top: 14px;
+  }
+  .rule {
+    width: 60px;
+    height: 1px;
+    background: var(--rule);
+    margin: 56px auto;
+  }
+
+  /* Generic prose section */
+  section { margin-bottom: 56px; }
+  section p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    line-height: 1.55;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+  section p em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 28px;
+    letter-spacing: 0.3px;
+  }
+  h2 .ornament {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+    margin: 8px auto 0;
+  }
+
+  /* Promises grid */
+  .promises {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 36px 0;
+  }
+  .promise {
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .promise:last-child { border-bottom: none; }
+  .promise b {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 19px;
+    display: block;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+  .promise span {
+    font-family: 'Inter', sans-serif;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  /* Examples */
+  .pezzo {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .pezzo:last-child { border-bottom: none; }
+  .pezzo .kicker {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    margin-bottom: 12px;
+  }
+  .pezzo .body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    line-height: 1.45;
+    white-space: pre-line;
+    color: var(--ink);
+  }
+  .pezzo .author {
+    margin-top: 14px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--ink-soft);
+  }
+
+  /* Waitlist form */
+  .waitlist {
+    background: var(--paper-deep);
+    border-radius: 16px;
+    padding: 36px 28px;
+  }
+  .waitlist .label {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .waitlist input[type="email"],
+  .waitlist textarea {
+    width: 100%;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: var(--ink);
+    margin-bottom: 22px;
+    transition: border-color 0.15s;
+  }
+  .waitlist input[type="email"]:focus,
+  .waitlist textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .waitlist textarea {
+    min-height: 90px;
+    resize: vertical;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+  }
+  .waitlist .city-group {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 22px;
+    flex-wrap: wrap;
+  }
+  .waitlist .city-group label {
+    flex: 1;
+    min-width: 90px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 15px;
+    color: var(--ink-soft);
+    transition: all 0.15s;
+  }
+  .waitlist .city-group input { display: none; }
+  .waitlist .city-group input:checked + span {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .waitlist .city-group label:has(input:checked) {
+    border-color: var(--accent);
+    background: var(--paper);
+  }
+  .waitlist button {
+    width: 100%;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    border-radius: 10px;
+    padding: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .waitlist button:hover { background: var(--accent); }
+  .waitlist .helper {
+    margin-top: 14px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-faded);
+    text-align: center;
+    line-height: 1.5;
+  }
+  .success {
+    text-align: center;
+    padding: 24px 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .success span { color: var(--accent); }
+
+  /* Closing note */
+  .note {
+    margin-top: 56px;
+    padding: 28px 24px;
+    background: var(--paper);
+    border-left: 2px solid var(--accent);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .note .signature {
+    margin-top: 12px;
+    font-style: normal;
+    color: var(--ink);
+    font-size: 16px;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 80px;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* Honeypot — hidden field for bot prevention */
+  .honeypot { display: none; }
+</style>
+</head>
+<body>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <header>
+    <div class="meta">in arrivo · brescia · bergamo</div>
+    <h1>Cartegg<span class="dot">i</span>o</h1>
+    <p class="tagline">conoscersi per le parole, non per la foto</p>
+  </header>
+
+  <div class="rule"></div>
+
+  <!-- ============ PROBLEM ============ -->
+  <section>
+    <p>C'è un modo strano di sentirsi soli che è proprio delle app di dating. Non è la solitudine di chi non ha nessuno — è quella di chi ha trecento persone davanti agli occhi e nessuna che lo riguardi davvero.</p>
+
+    <p>Alcune amiche hanno descritto questa sensazione con una parola precisa: <em>supermercato</em>. Persone come prodotti, ognuna con la sua etichetta — altezza, lavoro, foto in primo piano — e tu lì a passare in rassegna gli scaffali. È una sensazione che corrode. Anche quando funziona, lascia un residuo.</p>
+
+    <p>Carteggio nasce contro questa cosa.</p>
+  </section>
+
+  <!-- ============ FOR WHOM ============ -->
+  <section>
+    <h2>Per chi nasce<span class="ornament"></span></h2>
+
+    <p>Per chi pensa che le persone siano più dei loro tratti. Per chi non sa fotografarsi bene ma ha qualcosa da dire che resta dentro. Per chi sulle altre app si è sentito invisibile, o solo un volto in più nella pila.</p>
+
+    <p>Per chi vuole essere apprezzato per il proprio spessore — non per il proprio viso, non per la propria condizione sociale.</p>
+  </section>
+
+  <!-- ============ PROMISES ============ -->
+  <section class="promises">
+    <h2 style="margin-top:-12px;">Le nostre promesse<span class="ornament"></span></h2>
+
+    <div class="promise">
+      <b>Niente foto, all'inizio.</b>
+      <span>Si sbloccano solo dopo che ci si è già scritti per davvero, e restano sempre opzionali.</span>
+    </div>
+    <div class="promise">
+      <b>Niente filtri per attributi fisici.</b>
+      <span>Mai. Neanche nelle versioni a pagamento.</span>
+    </div>
+    <div class="promise">
+      <b>Niente swipe.</b>
+      <span>L'unità di interazione è il pezzo, non il volto. Si scorre come una rivista, non come un mazzo di carte.</span>
+    </div>
+    <div class="promise">
+      <b>Eco, non like.</b>
+      <span>Per dire "ti ho letto" devi scrivere qualcosa. Un piccolo costo che alza la qualità di tutto quello che viene dopo.</span>
+    </div>
+    <div class="promise">
+      <b>Conversazione lenta, all'inizio.</b>
+      <span>I primi scambi hanno il ritmo di una lettera, non di una chat. Una risposta al giorno.</span>
+    </div>
+    <div class="promise">
+      <b>Niente boost a pagamento per essere visti di più.</b>
+      <span>Mai. Quel modello distrugge le app di dating dall'interno, e non lo replicheremo.</span>
+    </div>
+  </section>
+
+  <!-- ============ EXAMPLES ============ -->
+  <section>
+    <h2>Cosa si scrive<span class="ornament"></span></h2>
+
+    <div class="pezzo">
+      <div class="kicker">Ricordo</div>
+      <div class="body">Le domeniche di mio padre
+sapevano di caffè
+e di radio accesa
+sul niente.</div>
+      <div class="author">— Lucia, 28</div>
+    </div>
+
+    <div class="pezzo">
+      <div class="kicker">Sei parole</div>
+      <div class="body">Volevo restare. Nessuno me l'ha chiesto.</div>
+      <div class="author">— Marco, 34</div>
+    </div>
+
+    <div class="pezzo">
+      <div class="kicker">Confessione</div>
+      <div class="body">Ho imparato a stare sola al cinema
+e adesso mi mancano solo i film
+che non posso commentare con nessuno.</div>
+      <div class="author">— Anna, 31</div>
+    </div>
+
+    <div class="pezzo">
+      <div class="kicker">Una piccola felicità</div>
+      <div class="body">La cassiera del Conad mi ha riconosciuto
+e mi ha chiesto della gatta.
+Mi è bastato per tutta la giornata.</div>
+      <div class="author">— Davide, 36</div>
+    </div>
+  </section>
+
+  <!-- ============ WAITLIST ============ -->
+  <section>
+    <h2>Lista d'attesa<span class="ornament"></span></h2>
+
+    <p style="font-size:18px; text-align:center; margin-bottom:28px; color: var(--ink-soft);">
+      Lasciaci la tua email. Ti scriviamo personalmente quando ci sarà qualcosa da provare, e non prima.
+    </p>
+
+    <form
+      class="waitlist"
+      name="carteggio-waitlist"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      onsubmit="return submitWaitlist(event)"
+    >
+      <input type="hidden" name="form-name" value="carteggio-waitlist">
+      <p class="honeypot"><label>Non riempire: <input name="bot-field"></label></p>
+
+      <label class="label" for="email">Email</label>
+      <input type="email" id="email" name="email" required placeholder="latua@email.it">
+
+      <span class="label">Da dove ci scrivi</span>
+      <div class="city-group">
+        <label><input type="radio" name="citta" value="Brescia" required><span>Brescia</span></label>
+        <label><input type="radio" name="citta" value="Bergamo"><span>Bergamo</span></label>
+        <label><input type="radio" name="citta" value="Altro"><span>Altro</span></label>
+      </div>
+
+      <label class="label" for="messaggio">Una riga su di te o sul perché ti interessa <em style="text-transform:none; letter-spacing:0; font-size:11px; color:var(--ink-faded);">(facoltativo, ma significa molto)</em></label>
+      <textarea id="messaggio" name="messaggio" placeholder="Anche solo qualche parola..."></textarea>
+
+      <button type="submit">Iscriviti alla lista</button>
+
+      <p class="helper">Niente spam, niente newsletter automatiche.<br>Solo una nostra mail, quando ci sarà qualcosa da raccontare.</p>
+    </form>
+
+    <div id="success-message" class="success" style="display:none;">
+      Grazie. <span>Ci sentiamo presto.</span><br>
+      <span style="font-size:16px; color: var(--ink-soft);">— Alice</span>
+    </div>
+  </section>
+
+  <!-- ============ CLOSING NOTE ============ -->
+  <div class="note">
+    Carteggio non è ancora un'app. È un'idea che sto provando a mettere al mondo, qui dove vivo, tra Brescia e Bergamo. Sto cercando le prime persone che vogliano provarla con me — non come utenti, come complici. Se ti riconosci in quello che hai letto fin qui, lasciaci la tua email. Ti scrivo personalmente quando arriva il momento.
+    <div class="signature">— Alice</div>
+  </div>
+
+  <footer>
+    Carteggio · 2026 · Brescia
+  </footer>
+
+</main>
+
+<script>
+  function submitWaitlist(event) {
+    // Lascia che il form si invii a Netlify Forms in background.
+    // Netlify intercetta il POST automaticamente quando data-netlify="true".
+    // Mostriamo il messaggio di successo senza redirect.
+
+    const form = event.target;
+    const formData = new FormData(form);
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString()
+    })
+      .then(() => {
+        form.style.display = "none";
+        document.getElementById("success-message").style.display = "block";
+        // scroll into view
+        document.getElementById("success-message").scrollIntoView({ behavior: "smooth", block: "center" });
+      })
+      .catch((error) => {
+        alert("C'è stato un problema. Riprova fra un momento, o scrivici direttamente.");
+        console.error(error);
+      });
+
+    event.preventDefault();
+    return false;
+  }
+</script>
+
+</body>
+</html>
